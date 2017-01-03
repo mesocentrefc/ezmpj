@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<project basedir="." default="build" name="ezmpj">
+    <property environment="env" />
+    <property name="version" value="1.0" />
+    <property name="debuglevel" value="source,lines,vars" />
+    <property name="target" value="1.7" />
+    <property name="source" value="1.7" />
+    <property name="includeantruntime" value="false" />
+    <!--
+    <property name="classpath" location="${env.CLASSPATH}"/>
+    <path id="openmpi.classpath">
+        <pathelement location="." />
+        <pathelement location="/usr/local/lib/mpi.jar" />
+    </path>
+    -->
+    <target name="init">
+        <mkdir dir="build" />
+    </target>
+
+    <target name="clean">
+        <delete dir="build" />
+
+    </target>
+
+    <target depends="build-project, jar, clean" name="build" />
+
+    <target name="jar" depends="build-project">
+        <jar destfile="${ant.project.name}.jar" basedir="build">
+        </jar>
+    </target>
+
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}" />
+        <javac debug="true" debuglevel="${debuglevel}"
+            includeantruntime="false" includeJavaRuntime="true" destdir="build"
+            source="${source}" target="${target}">
+            <src path="src/mesofc" />
+            <!-- 
+            <classpath refid="classpath" />
+            -->
+            <compilerarg value="-classpath" />
+            <compilerarg value="${env.CLASSPATH}" />
+            <compilerarg value="-Xlint"/>
+        </javac>
+    </target>
+
+</project>
