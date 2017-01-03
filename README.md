@@ -83,7 +83,7 @@ mpirun -np 4 java  -cp .:/path/to/ezmpj.jar  examples.HelloWorld
 
 ## Limitations
 * Combine **onMessage()** with standard MPI sending methods (Send, Isend,...) will cause a conflict in receiving messages. Use only _**EZMPJ.Send()**_ method to send objects.
-* Standard Java serialization is slow. One can use 3rd party APIs like  Java Fast Serialization (https://ruedigermoeller.github.io/fast-serialization/). You need to write a class that implements **EZMessageCodecInterface** and than call **setMessageCodec()** method.   
+* Standard Java serialization is slow. On can use 3rd party APIs like Java Fast Serialization (https://ruedigermoeller.github.io/fast-serialization/). You need to write a class that implements **EZMessageCodecInterface** and than call **setMessageCodec()** method.   
 
 ## Requirements
 * Open MPI with Java Interface (https://www.open-mpi.org/faq/?category=java)
